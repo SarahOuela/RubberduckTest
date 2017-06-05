@@ -1,0 +1,27 @@
+Private Sub Workbook_Open()
+    g_Language = "fr"
+    g_Language_Sheet = "MSG"
+    g_WSerror = ""
+    Set g_WB_Extra = ActiveWorkbook
+    Call setLanguageButtonVisible
+    ReDim g_listHeadCR(1 To 11)
+    g_listHeadCR(1) = "CONTEXTE"
+    g_listHeadCR(2) = "TYPE"
+    g_listHeadCR(3) = "FEUILLE"
+    g_listHeadCR(4) = "TRAITEMENT"
+    g_listHeadCR(5) = "TIME"
+    g_listHeadCR(6) = "ELEMENT"
+    g_listHeadCR(7) = "OCCURRENCE"
+    g_listHeadCR(8) = "LIGNE"
+    g_listHeadCR(9) = "DESCRIPTION"
+    g_listHeadCR(10) = ""
+    g_listHeadCR(11) = ""
+    'g_WB_Extra = Application.ThisWorkbook
+    'If (False = fileExists(ThisWorkbook.Worksheets(g_CONTROL).lbl_pathSource.Caption)) Then
+        'ThisWorkbook.Worksheets(g_CONTROL).lbl_pathSource.Caption = g_noFileTxt
+    'End If
+    'If (False = fileExists(ThisWorkbook.Worksheets(g_CONTROL).lbl_pathCible.Caption)) Then
+        'ThisWorkbook.Worksheets(g_CONTROL).lbl_pathCible.Caption = g_noFileTxt
+    'End If
+End Sub
+

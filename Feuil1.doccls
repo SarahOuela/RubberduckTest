@@ -1,0 +1,1136 @@
+
+
+Private Sub butComparaison_Click()
+    Call setSheetComparaison
+End Sub
+
+Private Sub butDataGen_Click()
+    Call setSheetSel
+End Sub
+
+Private Sub butFormula_Click()
+    Call setFormulaSel
+End Sub
+
+Private Sub butImport_Click()
+    Call setDataToSheetSel
+End Sub
+
+Private Sub butInitialize_Click()
+    Call initializeForSheetGeneration
+End Sub
+
+Private Sub butInputLec_Click()
+    Call setInputSelectedFrom
+End Sub
+
+Private Sub butListUpdate_Click()
+    Call listUpdate
+End Sub
+
+Private Sub butLangage_Click()
+    ufLanguage.Show
+End Sub
+
+Private Sub butLangageFr_Click()
+    ufLanguage.Show
+    Call setLanguageButtonVisible
+End Sub
+Private Sub butLangageEn_Click()
+    ufLanguage.Show
+    Call setLanguageButtonVisible
+End Sub
+Private Sub butLangageCn_Click()
+    ufLanguage.Show
+    Call setLanguageButtonVisible
+End Sub
+
+Private Sub butMetaGen_Click()
+    Call setMetaToSheetSel
+End Sub
+
+''' Lancement de la construction de la nomenclature étendue
+Private Sub butNomenclatureGen_Click()
+    Call SetNomenclature
+End Sub
+
+Private Sub butOpenParametersFile_Click()
+    Call openfileTypFile("PARAMETERS")
+End Sub
+Private Sub butOpenSourceFile_Click()
+    Call openfileTypFile("SOURCE")
+End Sub
+Private Sub butOpenTargetFile_Click()
+    Call openfileTypFile("TARGET")
+End Sub
+
+Private Sub butParametersCancel_Click()
+    Call cancelFileTyp("PARAMETERS")
+End Sub
+''' Lancement de la génération des quantités étendues
+Private Sub butQuantitesGen_Click()
+    Call SetQuantites
+End Sub
+
+Private Sub butSelDataSheet_Click()
+    selDataSheet.Show
+End Sub
+
+Private Sub butSelInputSheet_Click()
+        selInputSheet.Show
+End Sub
+
+Private Sub butSourceCancel_Click()
+    Call cancelFileTyp("SOURCE")
+End Sub
+
+Private Sub butTargetCancel_Click()
+    Call cancelFileTyp("TARGET")
+End Sub
+Public Sub setLanguageButtonVisibleOLD()
+    ThisWorkbook.Worksheets(g_CONTROL).butLangageFr.Visible = False
+    ThisWorkbook.Worksheets(g_CONTROL).butLangageEn.Visible = False
+    ThisWorkbook.Worksheets(g_CONTROL).butLangageCn.Visible = False
+    If g_Language = "fr" Then ThisWorkbook.Worksheets(g_CONTROL).butLangageFr.Visible = True
+    If g_Language = "en" Then ThisWorkbook.Worksheets(g_CONTROL).butLangageEn.Visible = True
+    If g_Language = "cn" Then ThisWorkbook.Worksheets(g_CONTROL).butLangageCn.Visible = True
+    ThisWorkbook.Worksheets(g_Language_Sheet).Cells(1, 1).VALUE = g_Language
+End Sub
+Private Sub butParametersHelp_Click()
+    MsgBox " ? ?  Le fichier des paramètres contient la description de :" & Chr(10) _
+    & "- la structure du système étudié (nomenclature)" & Chr(10) _
+    & "- les quantités et équations associées" & Chr(10) _
+    & "- la description des feuilles générées" & Chr(10) _
+    & "Le fichier de paramètres peut être celui qui vous permet de lancer EXTRA." & Chr(10) _
+    & "Dans ce cas il ne faut pas ouvrir de fichier de pramètres supplémentaire." _
+    , vbOKOnly, "Aide sur le fichier des paramètres"
+End Sub
+
+Private Sub butSourceHelp_Click()
+    MsgBox "Le fichier des paramètres contient la description de :" & Chr(10) _
+    & "- la structure du système étudié (nomenclature)" & Chr(10) _
+    & "- les quantités et équations associées" & Chr(10) _
+    & "- la description des feuilles générées" & Chr(10) _
+    & "Le fichier de paramètres peut être celui qui vous permet de lancer EXTRA." & Chr(10) _
+    & "Dans ce cas il ne faut pas ouvrir de fichier de pramètres supplémentaire." _
+    , vbOKOnly, "Aide sur le fichier source"
+End Sub
+Private Sub butTargetHelp_Click()
+    MsgBox "Le fichier des paramètres contient la description de :" & Chr(10) _
+    & "- la structure du système étudié (nomenclature)" & Chr(10) _
+    & "- les quantités et équations associées" & Chr(10) _
+    & "- la description des feuilles générées" & Chr(10) _
+    & "Le fichier de paramètres peut être celui qui vous permet de lancer EXTRA." & Chr(10) _
+    & "Dans ce cas il ne faut pas ouvrir de fichier de pramètres supplémentaire." _
+    , vbOKOnly, "Aide sur le fichier cible"
+End Sub
+
+Private Sub labSourceFileName_Change()
+
+End Sub
+
+
+
+
+Private Sub CommandButton2_Click()
+
+End Sub
+
+Private Sub CommandButton1_Click()
+
+End Sub
+
+Private Sub CommandButton13_Click()
+
+End Sub
+
+Private Sub CommandButton14_Click()
+
+End Sub
+
+Private Sub CommandButton15_Click()
+
+End Sub
+
+Private Sub CommandButton16_Click()
+
+End Sub
+
+Private Sub CommandButton17_Click()
+
+End Sub
+
+Private Sub CommandButton18_Click()
+
+End Sub
+
+Private Sub CommandButton6_Click()
+
+End Sub
+
+Private Sub CommandButton4_Click()
+    Call setDataSelectedFrom
+End Sub
+
+Private Sub cbArea_Change()
+
+End Sub
+
+Private Sub cbSelData_Click()
+    Dim chck As Boolean
+    chck = ThisWorkbook.Worksheets(g_CONTROL).cbSelData.VALUE
+If ThisWorkbook.Worksheets(g_CONTROL).cbSelData1.Visible Then ThisWorkbook.Worksheets(g_CONTROL).cbSelData1.VALUE = chck
+If ThisWorkbook.Worksheets(g_CONTROL).cbSelData2.Visible Then ThisWorkbook.Worksheets(g_CONTROL).cbSelData2.VALUE = chck
+If ThisWorkbook.Worksheets(g_CONTROL).cbSelData3.Visible Then ThisWorkbook.Worksheets(g_CONTROL).cbSelData3.VALUE = chck
+If ThisWorkbook.Worksheets(g_CONTROL).cbSelData4.Visible Then ThisWorkbook.Worksheets(g_CONTROL).cbSelData4.VALUE = chck
+If ThisWorkbook.Worksheets(g_CONTROL).cbSelData5.Visible Then ThisWorkbook.Worksheets(g_CONTROL).cbSelData5.VALUE = chck
+If ThisWorkbook.Worksheets(g_CONTROL).cbSelData6.Visible Then ThisWorkbook.Worksheets(g_CONTROL).cbSelData6.VALUE = chck
+If ThisWorkbook.Worksheets(g_CONTROL).cbSelData7.Visible Then ThisWorkbook.Worksheets(g_CONTROL).cbSelData7.VALUE = chck
+If ThisWorkbook.Worksheets(g_CONTROL).cbSelData8.Visible Then ThisWorkbook.Worksheets(g_CONTROL).cbSelData8.VALUE = chck
+If ThisWorkbook.Worksheets(g_CONTROL).cbSelData9.Visible Then ThisWorkbook.Worksheets(g_CONTROL).cbSelData9.VALUE = chck
+If ThisWorkbook.Worksheets(g_CONTROL).cbSelData10.Visible Then ThisWorkbook.Worksheets(g_CONTROL).cbSelData10.VALUE = chck
+If ThisWorkbook.Worksheets(g_CONTROL).cbSelData11.Visible Then ThisWorkbook.Worksheets(g_CONTROL).cbSelData11.VALUE = chck
+If ThisWorkbook.Worksheets(g_CONTROL).cbSelData12.Visible Then ThisWorkbook.Worksheets(g_CONTROL).cbSelData12.VALUE = chck
+If ThisWorkbook.Worksheets(g_CONTROL).cbSelData13.Visible Then ThisWorkbook.Worksheets(g_CONTROL).cbSelData13.VALUE = chck
+If ThisWorkbook.Worksheets(g_CONTROL).cbSelData14.Visible Then ThisWorkbook.Worksheets(g_CONTROL).cbSelData14.VALUE = chck
+If ThisWorkbook.Worksheets(g_CONTROL).cbSelData15.Visible Then ThisWorkbook.Worksheets(g_CONTROL).cbSelData15.VALUE = chck
+If ThisWorkbook.Worksheets(g_CONTROL).cbSelData16.Visible Then ThisWorkbook.Worksheets(g_CONTROL).cbSelData16.VALUE = chck
+If ThisWorkbook.Worksheets(g_CONTROL).cbSelData17.Visible Then ThisWorkbook.Worksheets(g_CONTROL).cbSelData17.VALUE = chck
+If ThisWorkbook.Worksheets(g_CONTROL).cbSelData18.Visible Then ThisWorkbook.Worksheets(g_CONTROL).cbSelData18.VALUE = chck
+If ThisWorkbook.Worksheets(g_CONTROL).cbSelData19.Visible Then ThisWorkbook.Worksheets(g_CONTROL).cbSelData19.VALUE = chck
+If ThisWorkbook.Worksheets(g_CONTROL).cbSelData20.Visible Then ThisWorkbook.Worksheets(g_CONTROL).cbSelData20.VALUE = chck
+If ThisWorkbook.Worksheets(g_CONTROL).cbSelData21.Visible Then ThisWorkbook.Worksheets(g_CONTROL).cbSelData21.VALUE = chck
+If ThisWorkbook.Worksheets(g_CONTROL).cbSelData22.Visible Then ThisWorkbook.Worksheets(g_CONTROL).cbSelData22.VALUE = chck
+If ThisWorkbook.Worksheets(g_CONTROL).cbSelData23.Visible Then ThisWorkbook.Worksheets(g_CONTROL).cbSelData23.VALUE = chck
+If ThisWorkbook.Worksheets(g_CONTROL).cbSelData24.Visible Then ThisWorkbook.Worksheets(g_CONTROL).cbSelData24.VALUE = chck
+If ThisWorkbook.Worksheets(g_CONTROL).cbSelData25.Visible Then ThisWorkbook.Worksheets(g_CONTROL).cbSelData25.VALUE = chck
+If ThisWorkbook.Worksheets(g_CONTROL).cbSelData26.Visible Then ThisWorkbook.Worksheets(g_CONTROL).cbSelData26.VALUE = chck
+If ThisWorkbook.Worksheets(g_CONTROL).cbSelData27.Visible Then ThisWorkbook.Worksheets(g_CONTROL).cbSelData27.VALUE = chck
+If ThisWorkbook.Worksheets(g_CONTROL).cbSelData28.Visible Then ThisWorkbook.Worksheets(g_CONTROL).cbSelData28.VALUE = chck
+If ThisWorkbook.Worksheets(g_CONTROL).cbSelData29.Visible Then ThisWorkbook.Worksheets(g_CONTROL).cbSelData29.VALUE = chck
+If ThisWorkbook.Worksheets(g_CONTROL).cbSelData30.Visible Then ThisWorkbook.Worksheets(g_CONTROL).cbSelData30.VALUE = chck
+If ThisWorkbook.Worksheets(g_CONTROL).cbSelData31.Visible Then ThisWorkbook.Worksheets(g_CONTROL).cbSelData31.VALUE = chck
+If ThisWorkbook.Worksheets(g_CONTROL).cbSelData32.Visible Then ThisWorkbook.Worksheets(g_CONTROL).cbSelData32.VALUE = chck
+If ThisWorkbook.Worksheets(g_CONTROL).cbSelData33.Visible Then ThisWorkbook.Worksheets(g_CONTROL).cbSelData33.VALUE = chck
+If ThisWorkbook.Worksheets(g_CONTROL).cbSelData34.Visible Then ThisWorkbook.Worksheets(g_CONTROL).cbSelData34.VALUE = chck
+If ThisWorkbook.Worksheets(g_CONTROL).cbSelData35.Visible Then ThisWorkbook.Worksheets(g_CONTROL).cbSelData35.VALUE = chck
+If ThisWorkbook.Worksheets(g_CONTROL).cbSelData36.Visible Then ThisWorkbook.Worksheets(g_CONTROL).cbSelData36.VALUE = chck
+If ThisWorkbook.Worksheets(g_CONTROL).cbSelData37.Visible Then ThisWorkbook.Worksheets(g_CONTROL).cbSelData37.VALUE = chck
+If ThisWorkbook.Worksheets(g_CONTROL).cbSelData38.Visible Then ThisWorkbook.Worksheets(g_CONTROL).cbSelData38.VALUE = chck
+If ThisWorkbook.Worksheets(g_CONTROL).cbSelData39.Visible Then ThisWorkbook.Worksheets(g_CONTROL).cbSelData39.VALUE = chck
+If ThisWorkbook.Worksheets(g_CONTROL).cbSelData40.Visible Then ThisWorkbook.Worksheets(g_CONTROL).cbSelData40.VALUE = chck
+If ThisWorkbook.Worksheets(g_CONTROL).cbSelData41.Visible Then ThisWorkbook.Worksheets(g_CONTROL).cbSelData41.VALUE = chck
+If ThisWorkbook.Worksheets(g_CONTROL).cbSelData42.Visible Then ThisWorkbook.Worksheets(g_CONTROL).cbSelData42.VALUE = chck
+If ThisWorkbook.Worksheets(g_CONTROL).cbSelData43.Visible Then ThisWorkbook.Worksheets(g_CONTROL).cbSelData43.VALUE = chck
+If ThisWorkbook.Worksheets(g_CONTROL).cbSelData44.Visible Then ThisWorkbook.Worksheets(g_CONTROL).cbSelData44.VALUE = chck
+If ThisWorkbook.Worksheets(g_CONTROL).cbSelData45.Visible Then ThisWorkbook.Worksheets(g_CONTROL).cbSelData45.VALUE = chck
+If ThisWorkbook.Worksheets(g_CONTROL).cbSelData46.Visible Then ThisWorkbook.Worksheets(g_CONTROL).cbSelData46.VALUE = chck
+If ThisWorkbook.Worksheets(g_CONTROL).cbSelData47.Visible Then ThisWorkbook.Worksheets(g_CONTROL).cbSelData47.VALUE = chck
+If ThisWorkbook.Worksheets(g_CONTROL).cbSelData48.Visible Then ThisWorkbook.Worksheets(g_CONTROL).cbSelData48.VALUE = chck
+If ThisWorkbook.Worksheets(g_CONTROL).cbSelData49.Visible Then ThisWorkbook.Worksheets(g_CONTROL).cbSelData49.VALUE = chck
+If ThisWorkbook.Worksheets(g_CONTROL).cbSelData50.Visible Then ThisWorkbook.Worksheets(g_CONTROL).cbSelData50.VALUE = chck
+If ThisWorkbook.Worksheets(g_CONTROL).cbSelData51.Visible Then ThisWorkbook.Worksheets(g_CONTROL).cbSelData51.VALUE = chck
+If ThisWorkbook.Worksheets(g_CONTROL).cbSelData52.Visible Then ThisWorkbook.Worksheets(g_CONTROL).cbSelData52.VALUE = chck
+If ThisWorkbook.Worksheets(g_CONTROL).cbSelData53.Visible Then ThisWorkbook.Worksheets(g_CONTROL).cbSelData53.VALUE = chck
+If ThisWorkbook.Worksheets(g_CONTROL).cbSelData54.Visible Then ThisWorkbook.Worksheets(g_CONTROL).cbSelData54.VALUE = chck
+If ThisWorkbook.Worksheets(g_CONTROL).cbSelData55.Visible Then ThisWorkbook.Worksheets(g_CONTROL).cbSelData55.VALUE = chck
+If ThisWorkbook.Worksheets(g_CONTROL).cbSelData56.Visible Then ThisWorkbook.Worksheets(g_CONTROL).cbSelData56.VALUE = chck
+If ThisWorkbook.Worksheets(g_CONTROL).cbSelData57.Visible Then ThisWorkbook.Worksheets(g_CONTROL).cbSelData57.VALUE = chck
+If ThisWorkbook.Worksheets(g_CONTROL).cbSelData58.Visible Then ThisWorkbook.Worksheets(g_CONTROL).cbSelData58.VALUE = chck
+If ThisWorkbook.Worksheets(g_CONTROL).cbSelData59.Visible Then ThisWorkbook.Worksheets(g_CONTROL).cbSelData59.VALUE = chck
+If ThisWorkbook.Worksheets(g_CONTROL).cbSelData60.Visible Then ThisWorkbook.Worksheets(g_CONTROL).cbSelData60.VALUE = chck
+If ThisWorkbook.Worksheets(g_CONTROL).cbSelData61.Visible Then ThisWorkbook.Worksheets(g_CONTROL).cbSelData61.VALUE = chck
+If ThisWorkbook.Worksheets(g_CONTROL).cbSelData62.Visible Then ThisWorkbook.Worksheets(g_CONTROL).cbSelData62.VALUE = chck
+If ThisWorkbook.Worksheets(g_CONTROL).cbSelData63.Visible Then ThisWorkbook.Worksheets(g_CONTROL).cbSelData63.VALUE = chck
+If ThisWorkbook.Worksheets(g_CONTROL).cbSelData64.Visible Then ThisWorkbook.Worksheets(g_CONTROL).cbSelData64.VALUE = chck
+If ThisWorkbook.Worksheets(g_CONTROL).cbSelData65.Visible Then ThisWorkbook.Worksheets(g_CONTROL).cbSelData65.VALUE = chck
+If ThisWorkbook.Worksheets(g_CONTROL).cbSelData66.Visible Then ThisWorkbook.Worksheets(g_CONTROL).cbSelData66.VALUE = chck
+If ThisWorkbook.Worksheets(g_CONTROL).cbSelData67.Visible Then ThisWorkbook.Worksheets(g_CONTROL).cbSelData67.VALUE = chck
+If ThisWorkbook.Worksheets(g_CONTROL).cbSelData68.Visible Then ThisWorkbook.Worksheets(g_CONTROL).cbSelData68.VALUE = chck
+If ThisWorkbook.Worksheets(g_CONTROL).cbSelData69.Visible Then ThisWorkbook.Worksheets(g_CONTROL).cbSelData69.VALUE = chck
+If ThisWorkbook.Worksheets(g_CONTROL).cbSelData70.Visible Then ThisWorkbook.Worksheets(g_CONTROL).cbSelData70.VALUE = chck
+If ThisWorkbook.Worksheets(g_CONTROL).cbSelData71.Visible Then ThisWorkbook.Worksheets(g_CONTROL).cbSelData71.VALUE = chck
+If ThisWorkbook.Worksheets(g_CONTROL).cbSelData72.Visible Then ThisWorkbook.Worksheets(g_CONTROL).cbSelData72.VALUE = chck
+If ThisWorkbook.Worksheets(g_CONTROL).cbSelData73.Visible Then ThisWorkbook.Worksheets(g_CONTROL).cbSelData73.VALUE = chck
+If ThisWorkbook.Worksheets(g_CONTROL).cbSelData74.Visible Then ThisWorkbook.Worksheets(g_CONTROL).cbSelData74.VALUE = chck
+If ThisWorkbook.Worksheets(g_CONTROL).cbSelData75.Visible Then ThisWorkbook.Worksheets(g_CONTROL).cbSelData75.VALUE = chck
+If ThisWorkbook.Worksheets(g_CONTROL).cbSelData76.Visible Then ThisWorkbook.Worksheets(g_CONTROL).cbSelData76.VALUE = chck
+If ThisWorkbook.Worksheets(g_CONTROL).cbSelData77.Visible Then ThisWorkbook.Worksheets(g_CONTROL).cbSelData77.VALUE = chck
+If ThisWorkbook.Worksheets(g_CONTROL).cbSelData78.Visible Then ThisWorkbook.Worksheets(g_CONTROL).cbSelData78.VALUE = chck
+If ThisWorkbook.Worksheets(g_CONTROL).cbSelData79.Visible Then ThisWorkbook.Worksheets(g_CONTROL).cbSelData79.VALUE = chck
+If ThisWorkbook.Worksheets(g_CONTROL).cbSelData80.Visible Then ThisWorkbook.Worksheets(g_CONTROL).cbSelData80.VALUE = chck
+If ThisWorkbook.Worksheets(g_CONTROL).cbSelData81.Visible Then ThisWorkbook.Worksheets(g_CONTROL).cbSelData81.VALUE = chck
+If ThisWorkbook.Worksheets(g_CONTROL).cbSelData82.Visible Then ThisWorkbook.Worksheets(g_CONTROL).cbSelData82.VALUE = chck
+If ThisWorkbook.Worksheets(g_CONTROL).cbSelData83.Visible Then ThisWorkbook.Worksheets(g_CONTROL).cbSelData83.VALUE = chck
+If ThisWorkbook.Worksheets(g_CONTROL).cbSelData84.Visible Then ThisWorkbook.Worksheets(g_CONTROL).cbSelData84.VALUE = chck
+If ThisWorkbook.Worksheets(g_CONTROL).cbSelData85.Visible Then ThisWorkbook.Worksheets(g_CONTROL).cbSelData85.VALUE = chck
+If ThisWorkbook.Worksheets(g_CONTROL).cbSelData86.Visible Then ThisWorkbook.Worksheets(g_CONTROL).cbSelData86.VALUE = chck
+If ThisWorkbook.Worksheets(g_CONTROL).cbSelData87.Visible Then ThisWorkbook.Worksheets(g_CONTROL).cbSelData87.VALUE = chck
+If ThisWorkbook.Worksheets(g_CONTROL).cbSelData88.Visible Then ThisWorkbook.Worksheets(g_CONTROL).cbSelData88.VALUE = chck
+If ThisWorkbook.Worksheets(g_CONTROL).cbSelData89.Visible Then ThisWorkbook.Worksheets(g_CONTROL).cbSelData89.VALUE = chck
+If ThisWorkbook.Worksheets(g_CONTROL).cbSelData90.Visible Then ThisWorkbook.Worksheets(g_CONTROL).cbSelData90.VALUE = chck
+If ThisWorkbook.Worksheets(g_CONTROL).cbSelData91.Visible Then ThisWorkbook.Worksheets(g_CONTROL).cbSelData91.VALUE = chck
+If ThisWorkbook.Worksheets(g_CONTROL).cbSelData92.Visible Then ThisWorkbook.Worksheets(g_CONTROL).cbSelData92.VALUE = chck
+If ThisWorkbook.Worksheets(g_CONTROL).cbSelData93.Visible Then ThisWorkbook.Worksheets(g_CONTROL).cbSelData93.VALUE = chck
+If ThisWorkbook.Worksheets(g_CONTROL).cbSelData94.Visible Then ThisWorkbook.Worksheets(g_CONTROL).cbSelData94.VALUE = chck
+If ThisWorkbook.Worksheets(g_CONTROL).cbSelData95.Visible Then ThisWorkbook.Worksheets(g_CONTROL).cbSelData95.VALUE = chck
+If ThisWorkbook.Worksheets(g_CONTROL).cbSelData96.Visible Then ThisWorkbook.Worksheets(g_CONTROL).cbSelData96.VALUE = chck
+If ThisWorkbook.Worksheets(g_CONTROL).cbSelData97.Visible Then ThisWorkbook.Worksheets(g_CONTROL).cbSelData97.VALUE = chck
+If ThisWorkbook.Worksheets(g_CONTROL).cbSelData98.Visible Then ThisWorkbook.Worksheets(g_CONTROL).cbSelData98.VALUE = chck
+If ThisWorkbook.Worksheets(g_CONTROL).cbSelData99.Visible Then ThisWorkbook.Worksheets(g_CONTROL).cbSelData99.VALUE = chck
+End Sub
+Private Sub cbSelMeta_Click()
+    Dim chck As Boolean
+    chck = ThisWorkbook.Worksheets(g_CONTROL).cbSelMeta.VALUE
+If ThisWorkbook.Worksheets(g_CONTROL).cbSelMeta1.Visible Then ThisWorkbook.Worksheets(g_CONTROL).cbSelMeta1.VALUE = chck
+If ThisWorkbook.Worksheets(g_CONTROL).cbSelMeta2.Visible Then ThisWorkbook.Worksheets(g_CONTROL).cbSelMeta2.VALUE = chck
+If ThisWorkbook.Worksheets(g_CONTROL).cbSelMeta3.Visible Then ThisWorkbook.Worksheets(g_CONTROL).cbSelMeta3.VALUE = chck
+If ThisWorkbook.Worksheets(g_CONTROL).cbSelMeta4.Visible Then ThisWorkbook.Worksheets(g_CONTROL).cbSelMeta4.VALUE = chck
+If ThisWorkbook.Worksheets(g_CONTROL).cbSelMeta5.Visible Then ThisWorkbook.Worksheets(g_CONTROL).cbSelMeta5.VALUE = chck
+If ThisWorkbook.Worksheets(g_CONTROL).cbSelMeta6.Visible Then ThisWorkbook.Worksheets(g_CONTROL).cbSelMeta6.VALUE = chck
+If ThisWorkbook.Worksheets(g_CONTROL).cbSelMeta7.Visible Then ThisWorkbook.Worksheets(g_CONTROL).cbSelMeta7.VALUE = chck
+If ThisWorkbook.Worksheets(g_CONTROL).cbSelMeta8.Visible Then ThisWorkbook.Worksheets(g_CONTROL).cbSelMeta8.VALUE = chck
+If ThisWorkbook.Worksheets(g_CONTROL).cbSelMeta9.Visible Then ThisWorkbook.Worksheets(g_CONTROL).cbSelMeta9.VALUE = chck
+If ThisWorkbook.Worksheets(g_CONTROL).cbSelMeta10.Visible Then ThisWorkbook.Worksheets(g_CONTROL).cbSelMeta10.VALUE = chck
+If ThisWorkbook.Worksheets(g_CONTROL).cbSelMeta11.Visible Then ThisWorkbook.Worksheets(g_CONTROL).cbSelMeta11.VALUE = chck
+If ThisWorkbook.Worksheets(g_CONTROL).cbSelMeta12.Visible Then ThisWorkbook.Worksheets(g_CONTROL).cbSelMeta12.VALUE = chck
+If ThisWorkbook.Worksheets(g_CONTROL).cbSelMeta13.Visible Then ThisWorkbook.Worksheets(g_CONTROL).cbSelMeta13.VALUE = chck
+If ThisWorkbook.Worksheets(g_CONTROL).cbSelMeta14.Visible Then ThisWorkbook.Worksheets(g_CONTROL).cbSelMeta14.VALUE = chck
+If ThisWorkbook.Worksheets(g_CONTROL).cbSelMeta15.Visible Then ThisWorkbook.Worksheets(g_CONTROL).cbSelMeta15.VALUE = chck
+If ThisWorkbook.Worksheets(g_CONTROL).cbSelMeta16.Visible Then ThisWorkbook.Worksheets(g_CONTROL).cbSelMeta16.VALUE = chck
+If ThisWorkbook.Worksheets(g_CONTROL).cbSelMeta17.Visible Then ThisWorkbook.Worksheets(g_CONTROL).cbSelMeta17.VALUE = chck
+If ThisWorkbook.Worksheets(g_CONTROL).cbSelMeta18.Visible Then ThisWorkbook.Worksheets(g_CONTROL).cbSelMeta18.VALUE = chck
+If ThisWorkbook.Worksheets(g_CONTROL).cbSelMeta19.Visible Then ThisWorkbook.Worksheets(g_CONTROL).cbSelMeta19.VALUE = chck
+If ThisWorkbook.Worksheets(g_CONTROL).cbSelMeta20.Visible Then ThisWorkbook.Worksheets(g_CONTROL).cbSelMeta20.VALUE = chck
+End Sub
+Private Sub cbSelInput_Click()
+    Dim chck As Boolean
+    chck = ThisWorkbook.Worksheets(g_CONTROL).cbSelInput.VALUE
+If ThisWorkbook.Worksheets(g_CONTROL).cbSelInput1.Visible Then ThisWorkbook.Worksheets(g_CONTROL).cbSelInput1.VALUE = chck
+If ThisWorkbook.Worksheets(g_CONTROL).cbSelInput2.Visible Then ThisWorkbook.Worksheets(g_CONTROL).cbSelInput2.VALUE = chck
+If ThisWorkbook.Worksheets(g_CONTROL).cbSelInput3.Visible Then ThisWorkbook.Worksheets(g_CONTROL).cbSelInput3.VALUE = chck
+If ThisWorkbook.Worksheets(g_CONTROL).cbSelInput4.Visible Then ThisWorkbook.Worksheets(g_CONTROL).cbSelInput4.VALUE = chck
+If ThisWorkbook.Worksheets(g_CONTROL).cbSelInput5.Visible Then ThisWorkbook.Worksheets(g_CONTROL).cbSelInput5.VALUE = chck
+If ThisWorkbook.Worksheets(g_CONTROL).cbSelInput6.Visible Then ThisWorkbook.Worksheets(g_CONTROL).cbSelInput6.VALUE = chck
+If ThisWorkbook.Worksheets(g_CONTROL).cbSelInput7.Visible Then ThisWorkbook.Worksheets(g_CONTROL).cbSelInput7.VALUE = chck
+If ThisWorkbook.Worksheets(g_CONTROL).cbSelInput8.Visible Then ThisWorkbook.Worksheets(g_CONTROL).cbSelInput8.VALUE = chck
+If ThisWorkbook.Worksheets(g_CONTROL).cbSelInput9.Visible Then ThisWorkbook.Worksheets(g_CONTROL).cbSelInput9.VALUE = chck
+If ThisWorkbook.Worksheets(g_CONTROL).cbSelInput10.Visible Then ThisWorkbook.Worksheets(g_CONTROL).cbSelInput10.VALUE = chck
+If ThisWorkbook.Worksheets(g_CONTROL).cbSelInput11.Visible Then ThisWorkbook.Worksheets(g_CONTROL).cbSelInput11.VALUE = chck
+If ThisWorkbook.Worksheets(g_CONTROL).cbSelInput12.Visible Then ThisWorkbook.Worksheets(g_CONTROL).cbSelInput12.VALUE = chck
+If ThisWorkbook.Worksheets(g_CONTROL).cbSelInput13.Visible Then ThisWorkbook.Worksheets(g_CONTROL).cbSelInput13.VALUE = chck
+If ThisWorkbook.Worksheets(g_CONTROL).cbSelInput14.Visible Then ThisWorkbook.Worksheets(g_CONTROL).cbSelInput14.VALUE = chck
+If ThisWorkbook.Worksheets(g_CONTROL).cbSelInput15.Visible Then ThisWorkbook.Worksheets(g_CONTROL).cbSelInput15.VALUE = chck
+If ThisWorkbook.Worksheets(g_CONTROL).cbSelInput16.Visible Then ThisWorkbook.Worksheets(g_CONTROL).cbSelInput16.VALUE = chck
+If ThisWorkbook.Worksheets(g_CONTROL).cbSelInput17.Visible Then ThisWorkbook.Worksheets(g_CONTROL).cbSelInput17.VALUE = chck
+If ThisWorkbook.Worksheets(g_CONTROL).cbSelInput18.Visible Then ThisWorkbook.Worksheets(g_CONTROL).cbSelInput18.VALUE = chck
+If ThisWorkbook.Worksheets(g_CONTROL).cbSelInput19.Visible Then ThisWorkbook.Worksheets(g_CONTROL).cbSelInput19.VALUE = chck
+If ThisWorkbook.Worksheets(g_CONTROL).cbSelInput20.Visible Then ThisWorkbook.Worksheets(g_CONTROL).cbSelInput20.VALUE = chck
+If ThisWorkbook.Worksheets(g_CONTROL).cbSelInput21.Visible Then ThisWorkbook.Worksheets(g_CONTROL).cbSelInput21.VALUE = chck
+If ThisWorkbook.Worksheets(g_CONTROL).cbSelInput22.Visible Then ThisWorkbook.Worksheets(g_CONTROL).cbSelInput22.VALUE = chck
+If ThisWorkbook.Worksheets(g_CONTROL).cbSelInput23.Visible Then ThisWorkbook.Worksheets(g_CONTROL).cbSelInput23.VALUE = chck
+If ThisWorkbook.Worksheets(g_CONTROL).cbSelInput24.Visible Then ThisWorkbook.Worksheets(g_CONTROL).cbSelInput24.VALUE = chck
+If ThisWorkbook.Worksheets(g_CONTROL).cbSelInput25.Visible Then ThisWorkbook.Worksheets(g_CONTROL).cbSelInput25.VALUE = chck
+If ThisWorkbook.Worksheets(g_CONTROL).cbSelInput26.Visible Then ThisWorkbook.Worksheets(g_CONTROL).cbSelInput26.VALUE = chck
+If ThisWorkbook.Worksheets(g_CONTROL).cbSelInput27.Visible Then ThisWorkbook.Worksheets(g_CONTROL).cbSelInput27.VALUE = chck
+If ThisWorkbook.Worksheets(g_CONTROL).cbSelInput28.Visible Then ThisWorkbook.Worksheets(g_CONTROL).cbSelInput28.VALUE = chck
+If ThisWorkbook.Worksheets(g_CONTROL).cbSelInput29.Visible Then ThisWorkbook.Worksheets(g_CONTROL).cbSelInput29.VALUE = chck
+If ThisWorkbook.Worksheets(g_CONTROL).cbSelInput30.Visible Then ThisWorkbook.Worksheets(g_CONTROL).cbSelInput30.VALUE = chck
+If ThisWorkbook.Worksheets(g_CONTROL).cbSelInput31.Visible Then ThisWorkbook.Worksheets(g_CONTROL).cbSelInput31.VALUE = chck
+If ThisWorkbook.Worksheets(g_CONTROL).cbSelInput32.Visible Then ThisWorkbook.Worksheets(g_CONTROL).cbSelInput32.VALUE = chck
+If ThisWorkbook.Worksheets(g_CONTROL).cbSelInput33.Visible Then ThisWorkbook.Worksheets(g_CONTROL).cbSelInput33.VALUE = chck
+If ThisWorkbook.Worksheets(g_CONTROL).cbSelInput34.Visible Then ThisWorkbook.Worksheets(g_CONTROL).cbSelInput34.VALUE = chck
+If ThisWorkbook.Worksheets(g_CONTROL).cbSelInput35.Visible Then ThisWorkbook.Worksheets(g_CONTROL).cbSelInput35.VALUE = chck
+If ThisWorkbook.Worksheets(g_CONTROL).cbSelInput36.Visible Then ThisWorkbook.Worksheets(g_CONTROL).cbSelInput36.VALUE = chck
+If ThisWorkbook.Worksheets(g_CONTROL).cbSelInput37.Visible Then ThisWorkbook.Worksheets(g_CONTROL).cbSelInput37.VALUE = chck
+If ThisWorkbook.Worksheets(g_CONTROL).cbSelInput38.Visible Then ThisWorkbook.Worksheets(g_CONTROL).cbSelInput38.VALUE = chck
+If ThisWorkbook.Worksheets(g_CONTROL).cbSelInput39.Visible Then ThisWorkbook.Worksheets(g_CONTROL).cbSelInput39.VALUE = chck
+If ThisWorkbook.Worksheets(g_CONTROL).cbSelInput40.Visible Then ThisWorkbook.Worksheets(g_CONTROL).cbSelInput40.VALUE = chck
+If ThisWorkbook.Worksheets(g_CONTROL).cbSelInput41.Visible Then ThisWorkbook.Worksheets(g_CONTROL).cbSelInput41.VALUE = chck
+If ThisWorkbook.Worksheets(g_CONTROL).cbSelInput42.Visible Then ThisWorkbook.Worksheets(g_CONTROL).cbSelInput42.VALUE = chck
+If ThisWorkbook.Worksheets(g_CONTROL).cbSelInput43.Visible Then ThisWorkbook.Worksheets(g_CONTROL).cbSelInput43.VALUE = chck
+If ThisWorkbook.Worksheets(g_CONTROL).cbSelInput44.Visible Then ThisWorkbook.Worksheets(g_CONTROL).cbSelInput44.VALUE = chck
+If ThisWorkbook.Worksheets(g_CONTROL).cbSelInput45.Visible Then ThisWorkbook.Worksheets(g_CONTROL).cbSelInput45.VALUE = chck
+If ThisWorkbook.Worksheets(g_CONTROL).cbSelInput46.Visible Then ThisWorkbook.Worksheets(g_CONTROL).cbSelInput46.VALUE = chck
+If ThisWorkbook.Worksheets(g_CONTROL).cbSelInput47.Visible Then ThisWorkbook.Worksheets(g_CONTROL).cbSelInput47.VALUE = chck
+If ThisWorkbook.Worksheets(g_CONTROL).cbSelInput48.Visible Then ThisWorkbook.Worksheets(g_CONTROL).cbSelInput48.VALUE = chck
+If ThisWorkbook.Worksheets(g_CONTROL).cbSelInput49.Visible Then ThisWorkbook.Worksheets(g_CONTROL).cbSelInput49.VALUE = chck
+If ThisWorkbook.Worksheets(g_CONTROL).cbSelInput50.Visible Then ThisWorkbook.Worksheets(g_CONTROL).cbSelInput50.VALUE = chck
+If ThisWorkbook.Worksheets(g_CONTROL).cbSelInput51.Visible Then ThisWorkbook.Worksheets(g_CONTROL).cbSelInput51.VALUE = chck
+If ThisWorkbook.Worksheets(g_CONTROL).cbSelInput52.Visible Then ThisWorkbook.Worksheets(g_CONTROL).cbSelInput52.VALUE = chck
+If ThisWorkbook.Worksheets(g_CONTROL).cbSelInput53.Visible Then ThisWorkbook.Worksheets(g_CONTROL).cbSelInput53.VALUE = chck
+If ThisWorkbook.Worksheets(g_CONTROL).cbSelInput54.Visible Then ThisWorkbook.Worksheets(g_CONTROL).cbSelInput54.VALUE = chck
+If ThisWorkbook.Worksheets(g_CONTROL).cbSelInput55.Visible Then ThisWorkbook.Worksheets(g_CONTROL).cbSelInput55.VALUE = chck
+If ThisWorkbook.Worksheets(g_CONTROL).cbSelInput56.Visible Then ThisWorkbook.Worksheets(g_CONTROL).cbSelInput56.VALUE = chck
+If ThisWorkbook.Worksheets(g_CONTROL).cbSelInput57.Visible Then ThisWorkbook.Worksheets(g_CONTROL).cbSelInput57.VALUE = chck
+If ThisWorkbook.Worksheets(g_CONTROL).cbSelInput58.Visible Then ThisWorkbook.Worksheets(g_CONTROL).cbSelInput58.VALUE = chck
+If ThisWorkbook.Worksheets(g_CONTROL).cbSelInput59.Visible Then ThisWorkbook.Worksheets(g_CONTROL).cbSelInput59.VALUE = chck
+If ThisWorkbook.Worksheets(g_CONTROL).cbSelInput60.Visible Then ThisWorkbook.Worksheets(g_CONTROL).cbSelInput60.VALUE = chck
+If ThisWorkbook.Worksheets(g_CONTROL).cbSelInput61.Visible Then ThisWorkbook.Worksheets(g_CONTROL).cbSelInput61.VALUE = chck
+If ThisWorkbook.Worksheets(g_CONTROL).cbSelInput62.Visible Then ThisWorkbook.Worksheets(g_CONTROL).cbSelInput62.VALUE = chck
+If ThisWorkbook.Worksheets(g_CONTROL).cbSelInput63.Visible Then ThisWorkbook.Worksheets(g_CONTROL).cbSelInput63.VALUE = chck
+If ThisWorkbook.Worksheets(g_CONTROL).cbSelInput64.Visible Then ThisWorkbook.Worksheets(g_CONTROL).cbSelInput64.VALUE = chck
+If ThisWorkbook.Worksheets(g_CONTROL).cbSelInput65.Visible Then ThisWorkbook.Worksheets(g_CONTROL).cbSelInput65.VALUE = chck
+If ThisWorkbook.Worksheets(g_CONTROL).cbSelInput66.Visible Then ThisWorkbook.Worksheets(g_CONTROL).cbSelInput66.VALUE = chck
+If ThisWorkbook.Worksheets(g_CONTROL).cbSelInput67.Visible Then ThisWorkbook.Worksheets(g_CONTROL).cbSelInput67.VALUE = chck
+If ThisWorkbook.Worksheets(g_CONTROL).cbSelInput68.Visible Then ThisWorkbook.Worksheets(g_CONTROL).cbSelInput68.VALUE = chck
+If ThisWorkbook.Worksheets(g_CONTROL).cbSelInput69.Visible Then ThisWorkbook.Worksheets(g_CONTROL).cbSelInput69.VALUE = chck
+If ThisWorkbook.Worksheets(g_CONTROL).cbSelInput70.Visible Then ThisWorkbook.Worksheets(g_CONTROL).cbSelInput70.VALUE = chck
+If ThisWorkbook.Worksheets(g_CONTROL).cbSelInput71.Visible Then ThisWorkbook.Worksheets(g_CONTROL).cbSelInput71.VALUE = chck
+If ThisWorkbook.Worksheets(g_CONTROL).cbSelInput72.Visible Then ThisWorkbook.Worksheets(g_CONTROL).cbSelInput72.VALUE = chck
+If ThisWorkbook.Worksheets(g_CONTROL).cbSelInput73.Visible Then ThisWorkbook.Worksheets(g_CONTROL).cbSelInput73.VALUE = chck
+If ThisWorkbook.Worksheets(g_CONTROL).cbSelInput74.Visible Then ThisWorkbook.Worksheets(g_CONTROL).cbSelInput74.VALUE = chck
+If ThisWorkbook.Worksheets(g_CONTROL).cbSelInput75.Visible Then ThisWorkbook.Worksheets(g_CONTROL).cbSelInput75.VALUE = chck
+If ThisWorkbook.Worksheets(g_CONTROL).cbSelInput76.Visible Then ThisWorkbook.Worksheets(g_CONTROL).cbSelInput76.VALUE = chck
+If ThisWorkbook.Worksheets(g_CONTROL).cbSelInput77.Visible Then ThisWorkbook.Worksheets(g_CONTROL).cbSelInput77.VALUE = chck
+If ThisWorkbook.Worksheets(g_CONTROL).cbSelInput78.Visible Then ThisWorkbook.Worksheets(g_CONTROL).cbSelInput78.VALUE = chck
+If ThisWorkbook.Worksheets(g_CONTROL).cbSelInput79.Visible Then ThisWorkbook.Worksheets(g_CONTROL).cbSelInput79.VALUE = chck
+If ThisWorkbook.Worksheets(g_CONTROL).cbSelInput80.Visible Then ThisWorkbook.Worksheets(g_CONTROL).cbSelInput80.VALUE = chck
+If ThisWorkbook.Worksheets(g_CONTROL).cbSelInput81.Visible Then ThisWorkbook.Worksheets(g_CONTROL).cbSelInput81.VALUE = chck
+If ThisWorkbook.Worksheets(g_CONTROL).cbSelInput82.Visible Then ThisWorkbook.Worksheets(g_CONTROL).cbSelInput82.VALUE = chck
+If ThisWorkbook.Worksheets(g_CONTROL).cbSelInput83.Visible Then ThisWorkbook.Worksheets(g_CONTROL).cbSelInput83.VALUE = chck
+If ThisWorkbook.Worksheets(g_CONTROL).cbSelInput84.Visible Then ThisWorkbook.Worksheets(g_CONTROL).cbSelInput84.VALUE = chck
+If ThisWorkbook.Worksheets(g_CONTROL).cbSelInput85.Visible Then ThisWorkbook.Worksheets(g_CONTROL).cbSelInput85.VALUE = chck
+If ThisWorkbook.Worksheets(g_CONTROL).cbSelInput86.Visible Then ThisWorkbook.Worksheets(g_CONTROL).cbSelInput86.VALUE = chck
+If ThisWorkbook.Worksheets(g_CONTROL).cbSelInput87.Visible Then ThisWorkbook.Worksheets(g_CONTROL).cbSelInput87.VALUE = chck
+If ThisWorkbook.Worksheets(g_CONTROL).cbSelInput88.Visible Then ThisWorkbook.Worksheets(g_CONTROL).cbSelInput88.VALUE = chck
+If ThisWorkbook.Worksheets(g_CONTROL).cbSelInput89.Visible Then ThisWorkbook.Worksheets(g_CONTROL).cbSelInput89.VALUE = chck
+If ThisWorkbook.Worksheets(g_CONTROL).cbSelInput90.Visible Then ThisWorkbook.Worksheets(g_CONTROL).cbSelInput90.VALUE = chck
+If ThisWorkbook.Worksheets(g_CONTROL).cbSelInput91.Visible Then ThisWorkbook.Worksheets(g_CONTROL).cbSelInput91.VALUE = chck
+If ThisWorkbook.Worksheets(g_CONTROL).cbSelInput92.Visible Then ThisWorkbook.Worksheets(g_CONTROL).cbSelInput92.VALUE = chck
+If ThisWorkbook.Worksheets(g_CONTROL).cbSelInput93.Visible Then ThisWorkbook.Worksheets(g_CONTROL).cbSelInput93.VALUE = chck
+If ThisWorkbook.Worksheets(g_CONTROL).cbSelInput94.Visible Then ThisWorkbook.Worksheets(g_CONTROL).cbSelInput94.VALUE = chck
+If ThisWorkbook.Worksheets(g_CONTROL).cbSelInput95.Visible Then ThisWorkbook.Worksheets(g_CONTROL).cbSelInput95.VALUE = chck
+If ThisWorkbook.Worksheets(g_CONTROL).cbSelInput96.Visible Then ThisWorkbook.Worksheets(g_CONTROL).cbSelInput96.VALUE = chck
+If ThisWorkbook.Worksheets(g_CONTROL).cbSelInput97.Visible Then ThisWorkbook.Worksheets(g_CONTROL).cbSelInput97.VALUE = chck
+If ThisWorkbook.Worksheets(g_CONTROL).cbSelInput98.Visible Then ThisWorkbook.Worksheets(g_CONTROL).cbSelInput98.VALUE = chck
+If ThisWorkbook.Worksheets(g_CONTROL).cbSelInput99.Visible Then ThisWorkbook.Worksheets(g_CONTROL).cbSelInput99.VALUE = chck
+End Sub
+Private Sub cbSelInput1_Click()
+    Call majDataName(1, ThisWorkbook.Worksheets(g_CONTROL).cbSelInput1.VALUE, g_CONTROL_INPUT_L, g_CONTROL_INPUT_C)
+End Sub
+Private Sub cbSelInput2_Click()
+    Call majDataName(2, ThisWorkbook.Worksheets(g_CONTROL).cbSelInput2.VALUE, g_CONTROL_INPUT_L, g_CONTROL_INPUT_C)
+End Sub
+Private Sub cbSelInput3_Click()
+    Call majDataName(3, ThisWorkbook.Worksheets(g_CONTROL).cbSelInput3.VALUE, g_CONTROL_INPUT_L, g_CONTROL_INPUT_C)
+End Sub
+Private Sub cbSelInput4_Click()
+    Call majDataName(4, ThisWorkbook.Worksheets(g_CONTROL).cbSelInput4.VALUE, g_CONTROL_INPUT_L, g_CONTROL_INPUT_C)
+End Sub
+Private Sub cbSelInput5_Click()
+    Call majDataName(5, ThisWorkbook.Worksheets(g_CONTROL).cbSelInput5.VALUE, g_CONTROL_INPUT_L, g_CONTROL_INPUT_C)
+End Sub
+Private Sub cbSelInput6_Click()
+    Call majDataName(6, ThisWorkbook.Worksheets(g_CONTROL).cbSelInput6.VALUE, g_CONTROL_INPUT_L, g_CONTROL_INPUT_C)
+End Sub
+Private Sub cbSelInput7_Click()
+    Call majDataName(7, ThisWorkbook.Worksheets(g_CONTROL).cbSelInput7.VALUE, g_CONTROL_INPUT_L, g_CONTROL_INPUT_C)
+End Sub
+Private Sub cbSelInput8_Click()
+    Call majDataName(8, ThisWorkbook.Worksheets(g_CONTROL).cbSelInput8.VALUE, g_CONTROL_INPUT_L, g_CONTROL_INPUT_C)
+End Sub
+Private Sub cbSelInput9_Click()
+    Call majDataName(9, ThisWorkbook.Worksheets(g_CONTROL).cbSelInput9.VALUE, g_CONTROL_INPUT_L, g_CONTROL_INPUT_C)
+End Sub
+Private Sub cbSelInput10_Click()
+    Call majDataName(10, ThisWorkbook.Worksheets(g_CONTROL).cbSelInput10.VALUE, g_CONTROL_INPUT_L, g_CONTROL_INPUT_C)
+End Sub
+Private Sub cbSelInput11_Click()
+    Call majDataName(11, ThisWorkbook.Worksheets(g_CONTROL).cbSelInput11.VALUE, g_CONTROL_INPUT_L, g_CONTROL_INPUT_C)
+End Sub
+Private Sub cbSelInput12_Click()
+    Call majDataName(12, ThisWorkbook.Worksheets(g_CONTROL).cbSelInput12.VALUE, g_CONTROL_INPUT_L, g_CONTROL_INPUT_C)
+End Sub
+Private Sub cbSelInput13_Click()
+    Call majDataName(13, ThisWorkbook.Worksheets(g_CONTROL).cbSelInput13.VALUE, g_CONTROL_INPUT_L, g_CONTROL_INPUT_C)
+End Sub
+Private Sub cbSelInput14_Click()
+    Call majDataName(14, ThisWorkbook.Worksheets(g_CONTROL).cbSelInput14.VALUE, g_CONTROL_INPUT_L, g_CONTROL_INPUT_C)
+End Sub
+Private Sub cbSelInput15_Click()
+    Call majDataName(15, ThisWorkbook.Worksheets(g_CONTROL).cbSelInput15.VALUE, g_CONTROL_INPUT_L, g_CONTROL_INPUT_C)
+End Sub
+Private Sub cbSelInput16_Click()
+    Call majDataName(16, ThisWorkbook.Worksheets(g_CONTROL).cbSelInput16.VALUE, g_CONTROL_INPUT_L, g_CONTROL_INPUT_C)
+End Sub
+Private Sub cbSelInput17_Click()
+    Call majDataName(17, ThisWorkbook.Worksheets(g_CONTROL).cbSelInput17.VALUE, g_CONTROL_INPUT_L, g_CONTROL_INPUT_C)
+End Sub
+Private Sub cbSelInput18_Click()
+    Call majDataName(18, ThisWorkbook.Worksheets(g_CONTROL).cbSelInput18.VALUE, g_CONTROL_INPUT_L, g_CONTROL_INPUT_C)
+End Sub
+Private Sub cbSelInput19_Click()
+    Call majDataName(19, ThisWorkbook.Worksheets(g_CONTROL).cbSelInput19.VALUE, g_CONTROL_INPUT_L, g_CONTROL_INPUT_C)
+End Sub
+Private Sub cbSelInput20_Click()
+    Call majDataName(20, ThisWorkbook.Worksheets(g_CONTROL).cbSelInput20.VALUE, g_CONTROL_INPUT_L, g_CONTROL_INPUT_C)
+End Sub
+Private Sub cbSelInput21_Click()
+    Call majDataName(21, ThisWorkbook.Worksheets(g_CONTROL).cbSelInput21.VALUE, g_CONTROL_INPUT_L, g_CONTROL_INPUT_C)
+End Sub
+Private Sub cbSelInput22_Click()
+    Call majDataName(22, ThisWorkbook.Worksheets(g_CONTROL).cbSelInput22.VALUE, g_CONTROL_INPUT_L, g_CONTROL_INPUT_C)
+End Sub
+Private Sub cbSelInput23_Click()
+    Call majDataName(23, ThisWorkbook.Worksheets(g_CONTROL).cbSelInput23.VALUE, g_CONTROL_INPUT_L, g_CONTROL_INPUT_C)
+End Sub
+Private Sub cbSelInput24_Click()
+    Call majDataName(24, ThisWorkbook.Worksheets(g_CONTROL).cbSelInput24.VALUE, g_CONTROL_INPUT_L, g_CONTROL_INPUT_C)
+End Sub
+Private Sub cbSelInput25_Click()
+    Call majDataName(25, ThisWorkbook.Worksheets(g_CONTROL).cbSelInput25.VALUE, g_CONTROL_INPUT_L, g_CONTROL_INPUT_C)
+End Sub
+Private Sub cbSelInput26_Click()
+    Call majDataName(26, ThisWorkbook.Worksheets(g_CONTROL).cbSelInput26.VALUE, g_CONTROL_INPUT_L, g_CONTROL_INPUT_C)
+End Sub
+Private Sub cbSelInput27_Click()
+    Call majDataName(27, ThisWorkbook.Worksheets(g_CONTROL).cbSelInput27.VALUE, g_CONTROL_INPUT_L, g_CONTROL_INPUT_C)
+End Sub
+Private Sub cbSelInput28_Click()
+    Call majDataName(28, ThisWorkbook.Worksheets(g_CONTROL).cbSelInput28.VALUE, g_CONTROL_INPUT_L, g_CONTROL_INPUT_C)
+End Sub
+Private Sub cbSelInput29_Click()
+    Call majDataName(29, ThisWorkbook.Worksheets(g_CONTROL).cbSelInput29.VALUE, g_CONTROL_INPUT_L, g_CONTROL_INPUT_C)
+End Sub
+Private Sub cbSelInput30_Click()
+    Call majDataName(30, ThisWorkbook.Worksheets(g_CONTROL).cbSelInput30.VALUE, g_CONTROL_INPUT_L, g_CONTROL_INPUT_C)
+End Sub
+Private Sub cbSelInput31_Click()
+    Call majDataName(31, ThisWorkbook.Worksheets(g_CONTROL).cbSelInput31.VALUE, g_CONTROL_INPUT_L, g_CONTROL_INPUT_C)
+End Sub
+Private Sub cbSelInput32_Click()
+    Call majDataName(32, ThisWorkbook.Worksheets(g_CONTROL).cbSelInput32.VALUE, g_CONTROL_INPUT_L, g_CONTROL_INPUT_C)
+End Sub
+Private Sub cbSelInput33_Click()
+    Call majDataName(33, ThisWorkbook.Worksheets(g_CONTROL).cbSelInput33.VALUE, g_CONTROL_INPUT_L, g_CONTROL_INPUT_C)
+End Sub
+Private Sub cbSelInput34_Click()
+    Call majDataName(34, ThisWorkbook.Worksheets(g_CONTROL).cbSelInput34.VALUE, g_CONTROL_INPUT_L, g_CONTROL_INPUT_C)
+End Sub
+Private Sub cbSelInput35_Click()
+    Call majDataName(35, ThisWorkbook.Worksheets(g_CONTROL).cbSelInput35.VALUE, g_CONTROL_INPUT_L, g_CONTROL_INPUT_C)
+End Sub
+Private Sub cbSelInput36_Click()
+    Call majDataName(36, ThisWorkbook.Worksheets(g_CONTROL).cbSelInput36.VALUE, g_CONTROL_INPUT_L, g_CONTROL_INPUT_C)
+End Sub
+Private Sub cbSelInput37_Click()
+    Call majDataName(37, ThisWorkbook.Worksheets(g_CONTROL).cbSelInput37.VALUE, g_CONTROL_INPUT_L, g_CONTROL_INPUT_C)
+End Sub
+Private Sub cbSelInput38_Click()
+    Call majDataName(38, ThisWorkbook.Worksheets(g_CONTROL).cbSelInput38.VALUE, g_CONTROL_INPUT_L, g_CONTROL_INPUT_C)
+End Sub
+Private Sub cbSelInput39_Click()
+    Call majDataName(39, ThisWorkbook.Worksheets(g_CONTROL).cbSelInput39.VALUE, g_CONTROL_INPUT_L, g_CONTROL_INPUT_C)
+End Sub
+Private Sub cbSelInput40_Click()
+    Call majDataName(40, ThisWorkbook.Worksheets(g_CONTROL).cbSelInput40.VALUE, g_CONTROL_INPUT_L, g_CONTROL_INPUT_C)
+End Sub
+Private Sub cbSelInput41_Click()
+    Call majDataName(41, ThisWorkbook.Worksheets(g_CONTROL).cbSelInput41.VALUE, g_CONTROL_INPUT_L, g_CONTROL_INPUT_C)
+End Sub
+Private Sub cbSelInput42_Click()
+    Call majDataName(42, ThisWorkbook.Worksheets(g_CONTROL).cbSelInput42.VALUE, g_CONTROL_INPUT_L, g_CONTROL_INPUT_C)
+End Sub
+Private Sub cbSelInput43_Click()
+    Call majDataName(43, ThisWorkbook.Worksheets(g_CONTROL).cbSelInput43.VALUE, g_CONTROL_INPUT_L, g_CONTROL_INPUT_C)
+End Sub
+Private Sub cbSelInput44_Click()
+    Call majDataName(44, ThisWorkbook.Worksheets(g_CONTROL).cbSelInput44.VALUE, g_CONTROL_INPUT_L, g_CONTROL_INPUT_C)
+End Sub
+Private Sub cbSelInput45_Click()
+    Call majDataName(45, ThisWorkbook.Worksheets(g_CONTROL).cbSelInput45.VALUE, g_CONTROL_INPUT_L, g_CONTROL_INPUT_C)
+End Sub
+Private Sub cbSelInput46_Click()
+    Call majDataName(46, ThisWorkbook.Worksheets(g_CONTROL).cbSelInput46.VALUE, g_CONTROL_INPUT_L, g_CONTROL_INPUT_C)
+End Sub
+Private Sub cbSelInput47_Click()
+    Call majDataName(47, ThisWorkbook.Worksheets(g_CONTROL).cbSelInput47.VALUE, g_CONTROL_INPUT_L, g_CONTROL_INPUT_C)
+End Sub
+Private Sub cbSelInput48_Click()
+    Call majDataName(48, ThisWorkbook.Worksheets(g_CONTROL).cbSelInput48.VALUE, g_CONTROL_INPUT_L, g_CONTROL_INPUT_C)
+End Sub
+Private Sub cbSelInput49_Click()
+    Call majDataName(49, ThisWorkbook.Worksheets(g_CONTROL).cbSelInput49.VALUE, g_CONTROL_INPUT_L, g_CONTROL_INPUT_C)
+End Sub
+Private Sub cbSelInput50_Click()
+    Call majDataName(50, ThisWorkbook.Worksheets(g_CONTROL).cbSelInput50.VALUE, g_CONTROL_INPUT_L, g_CONTROL_INPUT_C)
+End Sub
+Private Sub cbSelInput51_Click()
+    Call majDataName(51, ThisWorkbook.Worksheets(g_CONTROL).cbSelInput51.VALUE, g_CONTROL_INPUT_L, g_CONTROL_INPUT_C)
+End Sub
+Private Sub cbSelInput52_Click()
+    Call majDataName(52, ThisWorkbook.Worksheets(g_CONTROL).cbSelInput52.VALUE, g_CONTROL_INPUT_L, g_CONTROL_INPUT_C)
+End Sub
+Private Sub cbSelInput53_Click()
+    Call majDataName(53, ThisWorkbook.Worksheets(g_CONTROL).cbSelInput53.VALUE, g_CONTROL_INPUT_L, g_CONTROL_INPUT_C)
+End Sub
+Private Sub cbSelInput54_Click()
+    Call majDataName(54, ThisWorkbook.Worksheets(g_CONTROL).cbSelInput54.VALUE, g_CONTROL_INPUT_L, g_CONTROL_INPUT_C)
+End Sub
+Private Sub cbSelInput55_Click()
+    Call majDataName(55, ThisWorkbook.Worksheets(g_CONTROL).cbSelInput55.VALUE, g_CONTROL_INPUT_L, g_CONTROL_INPUT_C)
+End Sub
+Private Sub cbSelInput56_Click()
+    Call majDataName(56, ThisWorkbook.Worksheets(g_CONTROL).cbSelInput56.VALUE, g_CONTROL_INPUT_L, g_CONTROL_INPUT_C)
+End Sub
+Private Sub cbSelInput57_Click()
+    Call majDataName(57, ThisWorkbook.Worksheets(g_CONTROL).cbSelInput57.VALUE, g_CONTROL_INPUT_L, g_CONTROL_INPUT_C)
+End Sub
+Private Sub cbSelInput58_Click()
+    Call majDataName(58, ThisWorkbook.Worksheets(g_CONTROL).cbSelInput58.VALUE, g_CONTROL_INPUT_L, g_CONTROL_INPUT_C)
+End Sub
+Private Sub cbSelInput59_Click()
+    Call majDataName(59, ThisWorkbook.Worksheets(g_CONTROL).cbSelInput59.VALUE, g_CONTROL_INPUT_L, g_CONTROL_INPUT_C)
+End Sub
+Private Sub cbSelInput60_Click()
+    Call majDataName(60, ThisWorkbook.Worksheets(g_CONTROL).cbSelInput60.VALUE, g_CONTROL_INPUT_L, g_CONTROL_INPUT_C)
+End Sub
+Private Sub cbSelInput61_Click()
+    Call majDataName(61, ThisWorkbook.Worksheets(g_CONTROL).cbSelInput61.VALUE, g_CONTROL_INPUT_L, g_CONTROL_INPUT_C)
+End Sub
+Private Sub cbSelInput62_Click()
+    Call majDataName(62, ThisWorkbook.Worksheets(g_CONTROL).cbSelInput62.VALUE, g_CONTROL_INPUT_L, g_CONTROL_INPUT_C)
+End Sub
+Private Sub cbSelInput63_Click()
+    Call majDataName(63, ThisWorkbook.Worksheets(g_CONTROL).cbSelInput63.VALUE, g_CONTROL_INPUT_L, g_CONTROL_INPUT_C)
+End Sub
+Private Sub cbSelInput64_Click()
+    Call majDataName(64, ThisWorkbook.Worksheets(g_CONTROL).cbSelInput64.VALUE, g_CONTROL_INPUT_L, g_CONTROL_INPUT_C)
+End Sub
+Private Sub cbSelInput65_Click()
+    Call majDataName(65, ThisWorkbook.Worksheets(g_CONTROL).cbSelInput65.VALUE, g_CONTROL_INPUT_L, g_CONTROL_INPUT_C)
+End Sub
+Private Sub cbSelInput66_Click()
+    Call majDataName(66, ThisWorkbook.Worksheets(g_CONTROL).cbSelInput66.VALUE, g_CONTROL_INPUT_L, g_CONTROL_INPUT_C)
+End Sub
+Private Sub cbSelInput67_Click()
+    Call majDataName(67, ThisWorkbook.Worksheets(g_CONTROL).cbSelInput67.VALUE, g_CONTROL_INPUT_L, g_CONTROL_INPUT_C)
+End Sub
+Private Sub cbSelInput68_Click()
+    Call majDataName(68, ThisWorkbook.Worksheets(g_CONTROL).cbSelInput68.VALUE, g_CONTROL_INPUT_L, g_CONTROL_INPUT_C)
+End Sub
+Private Sub cbSelInput69_Click()
+    Call majDataName(69, ThisWorkbook.Worksheets(g_CONTROL).cbSelInput69.VALUE, g_CONTROL_INPUT_L, g_CONTROL_INPUT_C)
+End Sub
+Private Sub cbSelInput70_Click()
+    Call majDataName(70, ThisWorkbook.Worksheets(g_CONTROL).cbSelInput70.VALUE, g_CONTROL_INPUT_L, g_CONTROL_INPUT_C)
+End Sub
+Private Sub cbSelInput71_Click()
+    Call majDataName(71, ThisWorkbook.Worksheets(g_CONTROL).cbSelInput71.VALUE, g_CONTROL_INPUT_L, g_CONTROL_INPUT_C)
+End Sub
+Private Sub cbSelInput72_Click()
+    Call majDataName(72, ThisWorkbook.Worksheets(g_CONTROL).cbSelInput72.VALUE, g_CONTROL_INPUT_L, g_CONTROL_INPUT_C)
+End Sub
+Private Sub cbSelInput73_Click()
+    Call majDataName(73, ThisWorkbook.Worksheets(g_CONTROL).cbSelInput73.VALUE, g_CONTROL_INPUT_L, g_CONTROL_INPUT_C)
+End Sub
+Private Sub cbSelInput74_Click()
+    Call majDataName(74, ThisWorkbook.Worksheets(g_CONTROL).cbSelInput74.VALUE, g_CONTROL_INPUT_L, g_CONTROL_INPUT_C)
+End Sub
+Private Sub cbSelInput75_Click()
+    Call majDataName(75, ThisWorkbook.Worksheets(g_CONTROL).cbSelInput75.VALUE, g_CONTROL_INPUT_L, g_CONTROL_INPUT_C)
+End Sub
+Private Sub cbSelInput76_Click()
+    Call majDataName(76, ThisWorkbook.Worksheets(g_CONTROL).cbSelInput76.VALUE, g_CONTROL_INPUT_L, g_CONTROL_INPUT_C)
+End Sub
+Private Sub cbSelInput77_Click()
+    Call majDataName(77, ThisWorkbook.Worksheets(g_CONTROL).cbSelInput77.VALUE, g_CONTROL_INPUT_L, g_CONTROL_INPUT_C)
+End Sub
+Private Sub cbSelInput78_Click()
+    Call majDataName(78, ThisWorkbook.Worksheets(g_CONTROL).cbSelInput78.VALUE, g_CONTROL_INPUT_L, g_CONTROL_INPUT_C)
+End Sub
+Private Sub cbSelInput79_Click()
+    Call majDataName(79, ThisWorkbook.Worksheets(g_CONTROL).cbSelInput79.VALUE, g_CONTROL_INPUT_L, g_CONTROL_INPUT_C)
+End Sub
+Private Sub cbSelInput80_Click()
+    Call majDataName(80, ThisWorkbook.Worksheets(g_CONTROL).cbSelInput80.VALUE, g_CONTROL_INPUT_L, g_CONTROL_INPUT_C)
+End Sub
+Private Sub cbSelInput81_Click()
+    Call majDataName(81, ThisWorkbook.Worksheets(g_CONTROL).cbSelInput81.VALUE, g_CONTROL_INPUT_L, g_CONTROL_INPUT_C)
+End Sub
+Private Sub cbSelInput82_Click()
+    Call majDataName(82, ThisWorkbook.Worksheets(g_CONTROL).cbSelInput82.VALUE, g_CONTROL_INPUT_L, g_CONTROL_INPUT_C)
+End Sub
+Private Sub cbSelInput83_Click()
+    Call majDataName(83, ThisWorkbook.Worksheets(g_CONTROL).cbSelInput83.VALUE, g_CONTROL_INPUT_L, g_CONTROL_INPUT_C)
+End Sub
+Private Sub cbSelInput84_Click()
+    Call majDataName(84, ThisWorkbook.Worksheets(g_CONTROL).cbSelInput84.VALUE, g_CONTROL_INPUT_L, g_CONTROL_INPUT_C)
+End Sub
+Private Sub cbSelInput85_Click()
+    Call majDataName(85, ThisWorkbook.Worksheets(g_CONTROL).cbSelInput85.VALUE, g_CONTROL_INPUT_L, g_CONTROL_INPUT_C)
+End Sub
+Private Sub cbSelInput86_Click()
+    Call majDataName(86, ThisWorkbook.Worksheets(g_CONTROL).cbSelInput86.VALUE, g_CONTROL_INPUT_L, g_CONTROL_INPUT_C)
+End Sub
+Private Sub cbSelInput87_Click()
+    Call majDataName(87, ThisWorkbook.Worksheets(g_CONTROL).cbSelInput87.VALUE, g_CONTROL_INPUT_L, g_CONTROL_INPUT_C)
+End Sub
+Private Sub cbSelInput88_Click()
+    Call majDataName(88, ThisWorkbook.Worksheets(g_CONTROL).cbSelInput88.VALUE, g_CONTROL_INPUT_L, g_CONTROL_INPUT_C)
+End Sub
+Private Sub cbSelInput89_Click()
+    Call majDataName(89, ThisWorkbook.Worksheets(g_CONTROL).cbSelInput89.VALUE, g_CONTROL_INPUT_L, g_CONTROL_INPUT_C)
+End Sub
+Private Sub cbSelInput90_Click()
+    Call majDataName(90, ThisWorkbook.Worksheets(g_CONTROL).cbSelInput90.VALUE, g_CONTROL_INPUT_L, g_CONTROL_INPUT_C)
+End Sub
+Private Sub cbSelInput91_Click()
+    Call majDataName(91, ThisWorkbook.Worksheets(g_CONTROL).cbSelInput91.VALUE, g_CONTROL_INPUT_L, g_CONTROL_INPUT_C)
+End Sub
+Private Sub cbSelInput92_Click()
+    Call majDataName(92, ThisWorkbook.Worksheets(g_CONTROL).cbSelInput92.VALUE, g_CONTROL_INPUT_L, g_CONTROL_INPUT_C)
+End Sub
+Private Sub cbSelInput93_Click()
+    Call majDataName(93, ThisWorkbook.Worksheets(g_CONTROL).cbSelInput93.VALUE, g_CONTROL_INPUT_L, g_CONTROL_INPUT_C)
+End Sub
+Private Sub cbSelInput94_Click()
+    Call majDataName(94, ThisWorkbook.Worksheets(g_CONTROL).cbSelInput94.VALUE, g_CONTROL_INPUT_L, g_CONTROL_INPUT_C)
+End Sub
+Private Sub cbSelInput95_Click()
+    Call majDataName(95, ThisWorkbook.Worksheets(g_CONTROL).cbSelInput95.VALUE, g_CONTROL_INPUT_L, g_CONTROL_INPUT_C)
+End Sub
+Private Sub cbSelInput96_Click()
+    Call majDataName(96, ThisWorkbook.Worksheets(g_CONTROL).cbSelInput96.VALUE, g_CONTROL_INPUT_L, g_CONTROL_INPUT_C)
+End Sub
+Private Sub cbSelInput97_Click()
+    Call majDataName(97, ThisWorkbook.Worksheets(g_CONTROL).cbSelInput97.VALUE, g_CONTROL_INPUT_L, g_CONTROL_INPUT_C)
+End Sub
+Private Sub cbSelInput98_Click()
+    Call majDataName(98, ThisWorkbook.Worksheets(g_CONTROL).cbSelInput98.VALUE, g_CONTROL_INPUT_L, g_CONTROL_INPUT_C)
+End Sub
+Private Sub cbSelInput99_Click()
+    Call majDataName(99, ThisWorkbook.Worksheets(g_CONTROL).cbSelInput99.VALUE, g_CONTROL_INPUT_L, g_CONTROL_INPUT_C)
+End Sub
+
+
+Private Sub cbSelData1_Click()
+    Call majDataName(1, ThisWorkbook.Worksheets(g_CONTROL).cbSelData1.VALUE, g_CONTROL_DATA_L, g_CONTROL_DATA_C)
+End Sub
+Private Sub cbSelData2_Click()
+    Call majDataName(2, ThisWorkbook.Worksheets(g_CONTROL).cbSelData2.VALUE, g_CONTROL_DATA_L, g_CONTROL_DATA_C)
+End Sub
+Private Sub cbSelData3_Click()
+    Call majDataName(3, ThisWorkbook.Worksheets(g_CONTROL).cbSelData3.VALUE, g_CONTROL_DATA_L, g_CONTROL_DATA_C)
+End Sub
+Private Sub cbSelData4_Click()
+    Call majDataName(4, ThisWorkbook.Worksheets(g_CONTROL).cbSelData4.VALUE, g_CONTROL_DATA_L, g_CONTROL_DATA_C)
+End Sub
+Private Sub cbSelData5_Click()
+    Call majDataName(5, ThisWorkbook.Worksheets(g_CONTROL).cbSelData5.VALUE, g_CONTROL_DATA_L, g_CONTROL_DATA_C)
+End Sub
+Private Sub cbSelData6_Click()
+    Call majDataName(6, ThisWorkbook.Worksheets(g_CONTROL).cbSelData6.VALUE, g_CONTROL_DATA_L, g_CONTROL_DATA_C)
+End Sub
+Private Sub cbSelData7_Click()
+    Call majDataName(7, ThisWorkbook.Worksheets(g_CONTROL).cbSelData7.VALUE, g_CONTROL_DATA_L, g_CONTROL_DATA_C)
+End Sub
+Private Sub cbSelData8_Click()
+    Call majDataName(8, ThisWorkbook.Worksheets(g_CONTROL).cbSelData8.VALUE, g_CONTROL_DATA_L, g_CONTROL_DATA_C)
+End Sub
+Private Sub cbSelData9_Click()
+    Call majDataName(9, ThisWorkbook.Worksheets(g_CONTROL).cbSelData9.VALUE, g_CONTROL_DATA_L, g_CONTROL_DATA_C)
+End Sub
+Private Sub cbSelData10_Click()
+    Call majDataName(10, ThisWorkbook.Worksheets(g_CONTROL).cbSelData10.VALUE, g_CONTROL_DATA_L, g_CONTROL_DATA_C)
+End Sub
+Private Sub cbSelData11_Click()
+    Call majDataName(11, ThisWorkbook.Worksheets(g_CONTROL).cbSelData11.VALUE, g_CONTROL_DATA_L, g_CONTROL_DATA_C)
+End Sub
+Private Sub cbSelData12_Click()
+    Call majDataName(12, ThisWorkbook.Worksheets(g_CONTROL).cbSelData12.VALUE, g_CONTROL_DATA_L, g_CONTROL_DATA_C)
+End Sub
+Private Sub cbSelData13_Click()
+    Call majDataName(13, ThisWorkbook.Worksheets(g_CONTROL).cbSelData13.VALUE, g_CONTROL_DATA_L, g_CONTROL_DATA_C)
+End Sub
+Private Sub cbSelData14_Click()
+    Call majDataName(14, ThisWorkbook.Worksheets(g_CONTROL).cbSelData14.VALUE, g_CONTROL_DATA_L, g_CONTROL_DATA_C)
+End Sub
+Private Sub cbSelData15_Click()
+    Call majDataName(15, ThisWorkbook.Worksheets(g_CONTROL).cbSelData15.VALUE, g_CONTROL_DATA_L, g_CONTROL_DATA_C)
+End Sub
+Private Sub cbSelData16_Click()
+    Call majDataName(16, ThisWorkbook.Worksheets(g_CONTROL).cbSelData16.VALUE, g_CONTROL_DATA_L, g_CONTROL_DATA_C)
+End Sub
+Private Sub cbSelData17_Click()
+    Call majDataName(17, ThisWorkbook.Worksheets(g_CONTROL).cbSelData17.VALUE, g_CONTROL_DATA_L, g_CONTROL_DATA_C)
+End Sub
+Private Sub cbSelData18_Click()
+    Call majDataName(18, ThisWorkbook.Worksheets(g_CONTROL).cbSelData18.VALUE, g_CONTROL_DATA_L, g_CONTROL_DATA_C)
+End Sub
+Private Sub cbSelData19_Click()
+    Call majDataName(19, ThisWorkbook.Worksheets(g_CONTROL).cbSelData19.VALUE, g_CONTROL_DATA_L, g_CONTROL_DATA_C)
+End Sub
+Private Sub cbSelData20_Click()
+    Call majDataName(20, ThisWorkbook.Worksheets(g_CONTROL).cbSelData20.VALUE, g_CONTROL_DATA_L, g_CONTROL_DATA_C)
+End Sub
+Private Sub cbSelData21_Click()
+    Call majDataName(21, ThisWorkbook.Worksheets(g_CONTROL).cbSelData21.VALUE, g_CONTROL_DATA_L, g_CONTROL_DATA_C)
+End Sub
+Private Sub cbSelData22_Click()
+    Call majDataName(22, ThisWorkbook.Worksheets(g_CONTROL).cbSelData22.VALUE, g_CONTROL_DATA_L, g_CONTROL_DATA_C)
+End Sub
+Private Sub cbSelData23_Click()
+    Call majDataName(23, ThisWorkbook.Worksheets(g_CONTROL).cbSelData23.VALUE, g_CONTROL_DATA_L, g_CONTROL_DATA_C)
+End Sub
+Private Sub cbSelData24_Click()
+    Call majDataName(24, ThisWorkbook.Worksheets(g_CONTROL).cbSelData24.VALUE, g_CONTROL_DATA_L, g_CONTROL_DATA_C)
+End Sub
+Private Sub cbSelData25_Click()
+    Call majDataName(25, ThisWorkbook.Worksheets(g_CONTROL).cbSelData25.VALUE, g_CONTROL_DATA_L, g_CONTROL_DATA_C)
+End Sub
+Private Sub cbSelData26_Click()
+    Call majDataName(26, ThisWorkbook.Worksheets(g_CONTROL).cbSelData26.VALUE, g_CONTROL_DATA_L, g_CONTROL_DATA_C)
+End Sub
+Private Sub cbSelData27_Click()
+    Call majDataName(27, ThisWorkbook.Worksheets(g_CONTROL).cbSelData27.VALUE, g_CONTROL_DATA_L, g_CONTROL_DATA_C)
+End Sub
+Private Sub cbSelData28_Click()
+    Call majDataName(28, ThisWorkbook.Worksheets(g_CONTROL).cbSelData28.VALUE, g_CONTROL_DATA_L, g_CONTROL_DATA_C)
+End Sub
+Private Sub cbSelData29_Click()
+    Call majDataName(29, ThisWorkbook.Worksheets(g_CONTROL).cbSelData29.VALUE, g_CONTROL_DATA_L, g_CONTROL_DATA_C)
+End Sub
+Private Sub cbSelData30_Click()
+    Call majDataName(30, ThisWorkbook.Worksheets(g_CONTROL).cbSelData30.VALUE, g_CONTROL_DATA_L, g_CONTROL_DATA_C)
+End Sub
+Private Sub cbSelData31_Click()
+    Call majDataName(31, ThisWorkbook.Worksheets(g_CONTROL).cbSelData31.VALUE, g_CONTROL_DATA_L, g_CONTROL_DATA_C)
+End Sub
+Private Sub cbSelData32_Click()
+    Call majDataName(32, ThisWorkbook.Worksheets(g_CONTROL).cbSelData32.VALUE, g_CONTROL_DATA_L, g_CONTROL_DATA_C)
+End Sub
+Private Sub cbSelData33_Click()
+    Call majDataName(33, ThisWorkbook.Worksheets(g_CONTROL).cbSelData33.VALUE, g_CONTROL_DATA_L, g_CONTROL_DATA_C)
+End Sub
+Private Sub cbSelData34_Click()
+    Call majDataName(34, ThisWorkbook.Worksheets(g_CONTROL).cbSelData34.VALUE, g_CONTROL_DATA_L, g_CONTROL_DATA_C)
+End Sub
+Private Sub cbSelData35_Click()
+    Call majDataName(35, ThisWorkbook.Worksheets(g_CONTROL).cbSelData35.VALUE, g_CONTROL_DATA_L, g_CONTROL_DATA_C)
+End Sub
+Private Sub cbSelData36_Click()
+    Call majDataName(36, ThisWorkbook.Worksheets(g_CONTROL).cbSelData36.VALUE, g_CONTROL_DATA_L, g_CONTROL_DATA_C)
+End Sub
+Private Sub cbSelData37_Click()
+    Call majDataName(37, ThisWorkbook.Worksheets(g_CONTROL).cbSelData37.VALUE, g_CONTROL_DATA_L, g_CONTROL_DATA_C)
+End Sub
+Private Sub cbSelData38_Click()
+    Call majDataName(38, ThisWorkbook.Worksheets(g_CONTROL).cbSelData38.VALUE, g_CONTROL_DATA_L, g_CONTROL_DATA_C)
+End Sub
+Private Sub cbSelData39_Click()
+    Call majDataName(39, ThisWorkbook.Worksheets(g_CONTROL).cbSelData39.VALUE, g_CONTROL_DATA_L, g_CONTROL_DATA_C)
+End Sub
+Private Sub cbSelData40_Click()
+    Call majDataName(40, ThisWorkbook.Worksheets(g_CONTROL).cbSelData40.VALUE, g_CONTROL_DATA_L, g_CONTROL_DATA_C)
+End Sub
+Private Sub cbSelData41_Click()
+    Call majDataName(41, ThisWorkbook.Worksheets(g_CONTROL).cbSelData41.VALUE, g_CONTROL_DATA_L, g_CONTROL_DATA_C)
+End Sub
+Private Sub cbSelData42_Click()
+    Call majDataName(42, ThisWorkbook.Worksheets(g_CONTROL).cbSelData42.VALUE, g_CONTROL_DATA_L, g_CONTROL_DATA_C)
+End Sub
+Private Sub cbSelData43_Click()
+    Call majDataName(43, ThisWorkbook.Worksheets(g_CONTROL).cbSelData43.VALUE, g_CONTROL_DATA_L, g_CONTROL_DATA_C)
+End Sub
+Private Sub cbSelData44_Click()
+    Call majDataName(44, ThisWorkbook.Worksheets(g_CONTROL).cbSelData44.VALUE, g_CONTROL_DATA_L, g_CONTROL_DATA_C)
+End Sub
+Private Sub cbSelData45_Click()
+    Call majDataName(45, ThisWorkbook.Worksheets(g_CONTROL).cbSelData45.VALUE, g_CONTROL_DATA_L, g_CONTROL_DATA_C)
+End Sub
+Private Sub cbSelData46_Click()
+    Call majDataName(46, ThisWorkbook.Worksheets(g_CONTROL).cbSelData46.VALUE, g_CONTROL_DATA_L, g_CONTROL_DATA_C)
+End Sub
+Private Sub cbSelData47_Click()
+    Call majDataName(47, ThisWorkbook.Worksheets(g_CONTROL).cbSelData47.VALUE, g_CONTROL_DATA_L, g_CONTROL_DATA_C)
+End Sub
+Private Sub cbSelData48_Click()
+    Call majDataName(48, ThisWorkbook.Worksheets(g_CONTROL).cbSelData48.VALUE, g_CONTROL_DATA_L, g_CONTROL_DATA_C)
+End Sub
+Private Sub cbSelData49_Click()
+    Call majDataName(49, ThisWorkbook.Worksheets(g_CONTROL).cbSelData49.VALUE, g_CONTROL_DATA_L, g_CONTROL_DATA_C)
+End Sub
+Private Sub cbSelData50_Click()
+    Call majDataName(50, ThisWorkbook.Worksheets(g_CONTROL).cbSelData50.VALUE, g_CONTROL_DATA_L, g_CONTROL_DATA_C)
+End Sub
+Private Sub cbSelData51_Click()
+    Call majDataName(51, ThisWorkbook.Worksheets(g_CONTROL).cbSelData51.VALUE, g_CONTROL_DATA_L, g_CONTROL_DATA_C)
+End Sub
+Private Sub cbSelData52_Click()
+    Call majDataName(52, ThisWorkbook.Worksheets(g_CONTROL).cbSelData52.VALUE, g_CONTROL_DATA_L, g_CONTROL_DATA_C)
+End Sub
+Private Sub cbSelData53_Click()
+    Call majDataName(53, ThisWorkbook.Worksheets(g_CONTROL).cbSelData53.VALUE, g_CONTROL_DATA_L, g_CONTROL_DATA_C)
+End Sub
+Private Sub cbSelData54_Click()
+    Call majDataName(54, ThisWorkbook.Worksheets(g_CONTROL).cbSelData54.VALUE, g_CONTROL_DATA_L, g_CONTROL_DATA_C)
+End Sub
+Private Sub cbSelData55_Click()
+    Call majDataName(55, ThisWorkbook.Worksheets(g_CONTROL).cbSelData55.VALUE, g_CONTROL_DATA_L, g_CONTROL_DATA_C)
+End Sub
+Private Sub cbSelData56_Click()
+    Call majDataName(56, ThisWorkbook.Worksheets(g_CONTROL).cbSelData56.VALUE, g_CONTROL_DATA_L, g_CONTROL_DATA_C)
+End Sub
+Private Sub cbSelData57_Click()
+    Call majDataName(57, ThisWorkbook.Worksheets(g_CONTROL).cbSelData57.VALUE, g_CONTROL_DATA_L, g_CONTROL_DATA_C)
+End Sub
+Private Sub cbSelData58_Click()
+    Call majDataName(58, ThisWorkbook.Worksheets(g_CONTROL).cbSelData58.VALUE, g_CONTROL_DATA_L, g_CONTROL_DATA_C)
+End Sub
+Private Sub cbSelData59_Click()
+    Call majDataName(59, ThisWorkbook.Worksheets(g_CONTROL).cbSelData59.VALUE, g_CONTROL_DATA_L, g_CONTROL_DATA_C)
+End Sub
+Private Sub cbSelData60_Click()
+    Call majDataName(60, ThisWorkbook.Worksheets(g_CONTROL).cbSelData60.VALUE, g_CONTROL_DATA_L, g_CONTROL_DATA_C)
+End Sub
+Private Sub cbSelData61_Click()
+    Call majDataName(61, ThisWorkbook.Worksheets(g_CONTROL).cbSelData61.VALUE, g_CONTROL_DATA_L, g_CONTROL_DATA_C)
+End Sub
+Private Sub cbSelData62_Click()
+    Call majDataName(62, ThisWorkbook.Worksheets(g_CONTROL).cbSelData62.VALUE, g_CONTROL_DATA_L, g_CONTROL_DATA_C)
+End Sub
+Private Sub cbSelData63_Click()
+    Call majDataName(63, ThisWorkbook.Worksheets(g_CONTROL).cbSelData63.VALUE, g_CONTROL_DATA_L, g_CONTROL_DATA_C)
+End Sub
+Private Sub cbSelData64_Click()
+    Call majDataName(64, ThisWorkbook.Worksheets(g_CONTROL).cbSelData64.VALUE, g_CONTROL_DATA_L, g_CONTROL_DATA_C)
+End Sub
+Private Sub cbSelData65_Click()
+    Call majDataName(65, ThisWorkbook.Worksheets(g_CONTROL).cbSelData65.VALUE, g_CONTROL_DATA_L, g_CONTROL_DATA_C)
+End Sub
+Private Sub cbSelData66_Click()
+    Call majDataName(66, ThisWorkbook.Worksheets(g_CONTROL).cbSelData66.VALUE, g_CONTROL_DATA_L, g_CONTROL_DATA_C)
+End Sub
+Private Sub cbSelData67_Click()
+    Call majDataName(67, ThisWorkbook.Worksheets(g_CONTROL).cbSelData67.VALUE, g_CONTROL_DATA_L, g_CONTROL_DATA_C)
+End Sub
+Private Sub cbSelData68_Click()
+    Call majDataName(68, ThisWorkbook.Worksheets(g_CONTROL).cbSelData68.VALUE, g_CONTROL_DATA_L, g_CONTROL_DATA_C)
+End Sub
+Private Sub cbSelData69_Click()
+    Call majDataName(69, ThisWorkbook.Worksheets(g_CONTROL).cbSelData69.VALUE, g_CONTROL_DATA_L, g_CONTROL_DATA_C)
+End Sub
+Private Sub cbSelData70_Click()
+    Call majDataName(70, ThisWorkbook.Worksheets(g_CONTROL).cbSelData70.VALUE, g_CONTROL_DATA_L, g_CONTROL_DATA_C)
+End Sub
+Private Sub cbSelData71_Click()
+    Call majDataName(71, ThisWorkbook.Worksheets(g_CONTROL).cbSelData71.VALUE, g_CONTROL_DATA_L, g_CONTROL_DATA_C)
+End Sub
+Private Sub cbSelData72_Click()
+    Call majDataName(72, ThisWorkbook.Worksheets(g_CONTROL).cbSelData72.VALUE, g_CONTROL_DATA_L, g_CONTROL_DATA_C)
+End Sub
+Private Sub cbSelData73_Click()
+    Call majDataName(73, ThisWorkbook.Worksheets(g_CONTROL).cbSelData73.VALUE, g_CONTROL_DATA_L, g_CONTROL_DATA_C)
+End Sub
+Private Sub cbSelData74_Click()
+    Call majDataName(74, ThisWorkbook.Worksheets(g_CONTROL).cbSelData74.VALUE, g_CONTROL_DATA_L, g_CONTROL_DATA_C)
+End Sub
+Private Sub cbSelData75_Click()
+    Call majDataName(75, ThisWorkbook.Worksheets(g_CONTROL).cbSelData75.VALUE, g_CONTROL_DATA_L, g_CONTROL_DATA_C)
+End Sub
+Private Sub cbSelData76_Click()
+    Call majDataName(76, ThisWorkbook.Worksheets(g_CONTROL).cbSelData76.VALUE, g_CONTROL_DATA_L, g_CONTROL_DATA_C)
+End Sub
+Private Sub cbSelData77_Click()
+    Call majDataName(77, ThisWorkbook.Worksheets(g_CONTROL).cbSelData77.VALUE, g_CONTROL_DATA_L, g_CONTROL_DATA_C)
+End Sub
+Private Sub cbSelData78_Click()
+    Call majDataName(78, ThisWorkbook.Worksheets(g_CONTROL).cbSelData78.VALUE, g_CONTROL_DATA_L, g_CONTROL_DATA_C)
+End Sub
+Private Sub cbSelData79_Click()
+    Call majDataName(79, ThisWorkbook.Worksheets(g_CONTROL).cbSelData79.VALUE, g_CONTROL_DATA_L, g_CONTROL_DATA_C)
+End Sub
+Private Sub cbSelData80_Click()
+    Call majDataName(80, ThisWorkbook.Worksheets(g_CONTROL).cbSelData80.VALUE, g_CONTROL_DATA_L, g_CONTROL_DATA_C)
+End Sub
+Private Sub cbSelData81_Click()
+    Call majDataName(81, ThisWorkbook.Worksheets(g_CONTROL).cbSelData81.VALUE, g_CONTROL_DATA_L, g_CONTROL_DATA_C)
+End Sub
+Private Sub cbSelData82_Click()
+    Call majDataName(82, ThisWorkbook.Worksheets(g_CONTROL).cbSelData82.VALUE, g_CONTROL_DATA_L, g_CONTROL_DATA_C)
+End Sub
+Private Sub cbSelData83_Click()
+    Call majDataName(83, ThisWorkbook.Worksheets(g_CONTROL).cbSelData83.VALUE, g_CONTROL_DATA_L, g_CONTROL_DATA_C)
+End Sub
+Private Sub cbSelData84_Click()
+    Call majDataName(84, ThisWorkbook.Worksheets(g_CONTROL).cbSelData84.VALUE, g_CONTROL_DATA_L, g_CONTROL_DATA_C)
+End Sub
+Private Sub cbSelData85_Click()
+    Call majDataName(85, ThisWorkbook.Worksheets(g_CONTROL).cbSelData85.VALUE, g_CONTROL_DATA_L, g_CONTROL_DATA_C)
+End Sub
+Private Sub cbSelData86_Click()
+    Call majDataName(86, ThisWorkbook.Worksheets(g_CONTROL).cbSelData86.VALUE, g_CONTROL_DATA_L, g_CONTROL_DATA_C)
+End Sub
+Private Sub cbSelData87_Click()
+    Call majDataName(87, ThisWorkbook.Worksheets(g_CONTROL).cbSelData87.VALUE, g_CONTROL_DATA_L, g_CONTROL_DATA_C)
+End Sub
+Private Sub cbSelData88_Click()
+    Call majDataName(88, ThisWorkbook.Worksheets(g_CONTROL).cbSelData88.VALUE, g_CONTROL_DATA_L, g_CONTROL_DATA_C)
+End Sub
+Private Sub cbSelData89_Click()
+    Call majDataName(89, ThisWorkbook.Worksheets(g_CONTROL).cbSelData89.VALUE, g_CONTROL_DATA_L, g_CONTROL_DATA_C)
+End Sub
+Private Sub cbSelData90_Click()
+    Call majDataName(90, ThisWorkbook.Worksheets(g_CONTROL).cbSelData90.VALUE, g_CONTROL_DATA_L, g_CONTROL_DATA_C)
+End Sub
+Private Sub cbSelData91_Click()
+    Call majDataName(91, ThisWorkbook.Worksheets(g_CONTROL).cbSelData91.VALUE, g_CONTROL_DATA_L, g_CONTROL_DATA_C)
+End Sub
+Private Sub cbSelData92_Click()
+    Call majDataName(92, ThisWorkbook.Worksheets(g_CONTROL).cbSelData92.VALUE, g_CONTROL_DATA_L, g_CONTROL_DATA_C)
+End Sub
+Private Sub cbSelData93_Click()
+    Call majDataName(93, ThisWorkbook.Worksheets(g_CONTROL).cbSelData93.VALUE, g_CONTROL_DATA_L, g_CONTROL_DATA_C)
+End Sub
+Private Sub cbSelData94_Click()
+    Call majDataName(94, ThisWorkbook.Worksheets(g_CONTROL).cbSelData94.VALUE, g_CONTROL_DATA_L, g_CONTROL_DATA_C)
+End Sub
+Private Sub cbSelData95_Click()
+    Call majDataName(95, ThisWorkbook.Worksheets(g_CONTROL).cbSelData95.VALUE, g_CONTROL_DATA_L, g_CONTROL_DATA_C)
+End Sub
+Private Sub cbSelData96_Click()
+    Call majDataName(96, ThisWorkbook.Worksheets(g_CONTROL).cbSelData96.VALUE, g_CONTROL_DATA_L, g_CONTROL_DATA_C)
+End Sub
+Private Sub cbSelData97_Click()
+    Call majDataName(97, ThisWorkbook.Worksheets(g_CONTROL).cbSelData97.VALUE, g_CONTROL_DATA_L, g_CONTROL_DATA_C)
+End Sub
+Private Sub cbSelData98_Click()
+    Call majDataName(98, ThisWorkbook.Worksheets(g_CONTROL).cbSelData98.VALUE, g_CONTROL_DATA_L, g_CONTROL_DATA_C)
+End Sub
+Private Sub cbSelData99_Click()
+    Call majDataName(99, ThisWorkbook.Worksheets(g_CONTROL).cbSelData99.VALUE, g_CONTROL_DATA_L, g_CONTROL_DATA_C)
+End Sub
+
+
+Private Sub cbSelMeta1_Click()
+    Call majDataName(1, ThisWorkbook.Worksheets(g_CONTROL).cbSelMeta1.VALUE, g_CONTROL_META_L, g_CONTROL_META_C)
+End Sub
+Private Sub cbSelMeta2_Click()
+    Call majDataName(2, ThisWorkbook.Worksheets(g_CONTROL).cbSelMeta2.VALUE, g_CONTROL_META_L, g_CONTROL_META_C)
+End Sub
+Private Sub cbSelMeta3_Click()
+    Call majDataName(3, ThisWorkbook.Worksheets(g_CONTROL).cbSelMeta3.VALUE, g_CONTROL_META_L, g_CONTROL_META_C)
+End Sub
+Private Sub cbSelMeta4_Click()
+    Call majDataName(4, ThisWorkbook.Worksheets(g_CONTROL).cbSelMeta4.VALUE, g_CONTROL_META_L, g_CONTROL_META_C)
+End Sub
+Private Sub cbSelMeta5_Click()
+    Call majDataName(5, ThisWorkbook.Worksheets(g_CONTROL).cbSelMeta5.VALUE, g_CONTROL_META_L, g_CONTROL_META_C)
+End Sub
+Private Sub cbSelMeta6_Click()
+    Call majDataName(6, ThisWorkbook.Worksheets(g_CONTROL).cbSelMeta6.VALUE, g_CONTROL_META_L, g_CONTROL_META_C)
+End Sub
+Private Sub cbSelMeta7_Click()
+    Call majDataName(7, ThisWorkbook.Worksheets(g_CONTROL).cbSelMeta7.VALUE, g_CONTROL_META_L, g_CONTROL_META_C)
+End Sub
+Private Sub cbSelMeta8_Click()
+    Call majDataName(8, ThisWorkbook.Worksheets(g_CONTROL).cbSelMeta8.VALUE, g_CONTROL_META_L, g_CONTROL_META_C)
+End Sub
+Private Sub cbSelMeta9_Click()
+    Call majDataName(9, ThisWorkbook.Worksheets(g_CONTROL).cbSelMeta9.VALUE, g_CONTROL_META_L, g_CONTROL_META_C)
+End Sub
+Private Sub cbSelMeta10_Click()
+    Call majDataName(10, ThisWorkbook.Worksheets(g_CONTROL).cbSelMeta10.VALUE, g_CONTROL_META_L, g_CONTROL_META_C)
+End Sub
+Private Sub cbSelMeta11_Click()
+    Call majDataName(11, ThisWorkbook.Worksheets(g_CONTROL).cbSelMeta11.VALUE, g_CONTROL_META_L, g_CONTROL_META_C)
+End Sub
+Private Sub cbSelMeta12_Click()
+    Call majDataName(12, ThisWorkbook.Worksheets(g_CONTROL).cbSelMeta12.VALUE, g_CONTROL_META_L, g_CONTROL_META_C)
+End Sub
+Private Sub cbSelMeta13_Click()
+    Call majDataName(13, ThisWorkbook.Worksheets(g_CONTROL).cbSelMeta13.VALUE, g_CONTROL_META_L, g_CONTROL_META_C)
+End Sub
+Private Sub cbSelMeta14_Click()
+    Call majDataName(14, ThisWorkbook.Worksheets(g_CONTROL).cbSelMeta14.VALUE, g_CONTROL_META_L, g_CONTROL_META_C)
+End Sub
+Private Sub cbSelMeta15_Click()
+    Call majDataName(15, ThisWorkbook.Worksheets(g_CONTROL).cbSelMeta15.VALUE, g_CONTROL_META_L, g_CONTROL_META_C)
+End Sub
+Private Sub cbSelMeta16_Click()
+    Call majDataName(16, ThisWorkbook.Worksheets(g_CONTROL).cbSelMeta16.VALUE, g_CONTROL_META_L, g_CONTROL_META_C)
+End Sub
+Private Sub cbSelMeta17_Click()
+    Call majDataName(17, ThisWorkbook.Worksheets(g_CONTROL).cbSelMeta17.VALUE, g_CONTROL_META_L, g_CONTROL_META_C)
+End Sub
+Private Sub cbSelMeta18_Click()
+    Call majDataName(18, ThisWorkbook.Worksheets(g_CONTROL).cbSelMeta18.VALUE, g_CONTROL_META_L, g_CONTROL_META_C)
+End Sub
+Private Sub cbSelMeta19_Click()
+    Call majDataName(19, ThisWorkbook.Worksheets(g_CONTROL).cbSelMeta19.VALUE, g_CONTROL_META_L, g_CONTROL_META_C)
+End Sub
+Private Sub cbSelMeta20_Click()
+    Call majDataName(20, ThisWorkbook.Worksheets(g_CONTROL).cbSelMeta20.VALUE, g_CONTROL_META_L, g_CONTROL_META_C)
+End Sub
+
+Private Sub CommandButton25_Click()
+
+End Sub
+
+Private Sub cbTime_Change()
+
+End Sub
+
+Private Sub CommandButton9_Click()
+
+End Sub
+
+Private Sub labParametersFileName_Click()
+
+End Sub
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
